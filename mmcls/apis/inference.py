@@ -19,7 +19,7 @@ ModelType = Union[BaseModel, str, Config]
 InputType = Union[str, np.ndarray]
 
 
-def inference_model(model: ModelType, img: InputType, device=None):
+def inference_model(model: ModelType, img: InputType, device=None, return_datasamples=False):
     """Inference an image with the classifier.
 
     Args:
@@ -43,7 +43,7 @@ def inference_model(model: ModelType, img: InputType, device=None):
         powerful and configurable.
     """
     inferencer = ImageClassificationInferencer(model, device=device)
-    return inferencer(img)[0]
+    return inferencer(img, return_datasamples=return_datasamples)[0]
 
 
 class ImageClassificationInferencer(BaseInferencer):
